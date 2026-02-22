@@ -1,0 +1,25 @@
+node_modules/
+dist/
+
+*.js.map
+*.d.ts.map
+
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+.npmrc          # may contain npm auth tokens (NPM_TOKEN)
+*.pem           # SSL certificates / private keys
+*.key           # private keys
+*.p12
+secrets.*
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.vscode/settings.json
+.idea/
+*.suo
+*.user
