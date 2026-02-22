@@ -6,14 +6,11 @@ import type { CountryCode, ValidationResult } from './types';
 /**
  * Validates a mobile phone number (simple boolean result).
  *
- * The number must be in E.164 format (e.g. `+919876543210`) or include
- * a dialable country code so the library can detect the country.
- *
- * @param phoneNumber - The phone number string to validate
+ * @param phoneNumber - Phone number in E.164 format (e.g. `+919876543210`)
  * @returns `true` if the number is valid, `false` otherwise
  *
  * @example
- * validateMobileNumber('+919876543210'); // true  (India)
+ * validateMobileNumber('+919876543210'); // true
  * validateMobileNumber('+1234');         // false
  */
 export const validateMobileNumber = (phoneNumber: string): boolean => {
@@ -44,18 +41,22 @@ export const validateMobileNumber = (phoneNumber: string): boolean => {
 };
 
 /**
- * Validates a mobile phone number and returns detailed information.
+ * Validates a mobile phone number and returns detailed country information.
  *
- * @param phoneNumber - The phone number string to validate
- * @returns A {@link ValidationResult} object with `isValid`, and optionally
- *          `country`, `formattedNumber`, and `error` fields.
+ * @param phoneNumber - Phone number in E.164 format (e.g. `+919876543210`)
+ * @returns A {@link ValidationResult} with `isValid`, `country`, `country_code`,
+ *          `country_name`, `mobile_number`, `formattedNumber`, and optionally `error`.
  *
  * @example
- * const result = validateMobileNumberDetailed('+919876543210');
- * // { isValid: true, country: 'IN', formattedNumber: '+919876543210' }
- *
- * const bad = validateMobileNumberDetailed('hello');
- * // { isValid: false, error: 'Unable to parse phone number' }
+ * validateMobileNumberDetailed('+918024571878');
+ * // {
+ * //   isValid: true,
+ * //   country: 'IN',
+ * //   country_code: '91',
+ * //   country_name: 'India',
+ * //   mobile_number: '8024571878',
+ * //   formattedNumber: '+918024571878'
+ * // }
  */
 export const validateMobileNumberDetailed = (phoneNumber: string): ValidationResult => {
     if (!phoneNumber || typeof phoneNumber !== 'string') {
@@ -81,7 +82,7 @@ export const validateMobileNumberDetailed = (phoneNumber: string): ValidationRes
         };
     }
 
-    const formattedNumber = phoneNumberObj.number;
+    const formattedNumber = phoneNumberObj.number; // E.164 e.g. "+918024571878"
     const rawCountry = phoneNumberObj.country as LibCountryCode | undefined;
     const countryCode = rawCountry as CountryCode | undefined;
 
@@ -101,9 +102,25 @@ export const validateMobileNumberDetailed = (phoneNumber: string): ValidationRes
         };
     }
 
+    // Extract numeric country_code from the dialing code field (strip "+", parentheses etc.)
+    const rawDialCode = patternObj?.code ?? phoneNumberObj.countryCallingCode;
+    const country_code = rawDialCode.replace(/[^\d]/g, '').replace(/^(\d+).*$/, '$1');
+
+    // Extract local mobile_number: strip the leading "+" and country calling code
+    const callingCode = phoneNumberObj.countryCallingCode; // e.g. "91"
+    const e164 = formattedNumber.replace(/^\+/, '');       // e.g. "918024571878"
+    const mobile_number = e164.startsWith(callingCode)
+        ? e164.slice(callingCode.length)                      // e.g. "8024571878"
+        : e164;
+
+    const country_name = patternObj?.country_name;
+
     return {
         isValid: true,
         country: countryCode,
+        country_code,
+        country_name,
+        mobile_number,
         formattedNumber,
     };
 };

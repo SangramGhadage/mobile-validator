@@ -1,209 +1,209 @@
 import type { CountryCode, CountryPhonePattern } from './types';
 
 /**
- * A map of ISO 3166-1 alpha-2 country codes to their dialing code and
- * regex pattern for validating E.164 formatted phone numbers.
+ * A map of ISO 3166-1 alpha-2 country codes to their dialing code, country name,
+ * and regex pattern for validating E.164 formatted phone numbers.
  */
 export const countryPhonePatterns: Readonly<Record<CountryCode, CountryPhonePattern>> = {
-    AC: { code: '+247', pattern: /^(?:\+247|247)?[-\s]?\d{4}$/ },          // Ascension Island
-    AD: { code: '+376', pattern: /^(?:\+376|376)?[-\s]?\d{6}$/ },          // Andorra
-    AE: { code: '+971', pattern: /^(?:\+971|971)?[-\s]?\d{9}$/ },          // United Arab Emirates
-    AF: { code: '+93', pattern: /^(?:\+93|93)?[-\s]?\d{9}$/ },            // Afghanistan
-    AG: { code: '+1(268)', pattern: /^(?:\+1\(268\)|1\(268\))?[-\s]?\d{7}$/ }, // Antigua and Barbuda
-    AI: { code: '+1(264)', pattern: /^(?:\+1\(264\)|1\(264\))?[-\s]?\d{7}$/ }, // Anguilla
-    AL: { code: '+355', pattern: /^(?:\+355|355)?[-\s]?\d{9}$/ },          // Albania
-    AM: { code: '+374', pattern: /^(?:\+374|374)?[-\s]?\d{8}$/ },          // Armenia
-    AO: { code: '+244', pattern: /^(?:\+244|244)?[-\s]?\d{9}$/ },          // Angola
-    AR: { code: '+54', pattern: /^(?:\+54|54)?[-\s]?\d{10}$/ },           // Argentina
-    AS: { code: '+1(684)', pattern: /^(?:\+1\(684\)|1\(684\))?[-\s]?\d{7}$/ }, // American Samoa
-    AT: { code: '+43', pattern: /^(?:\+43|43)?[-\s]?\d{10}$/ },           // Austria
-    AU: { code: '+61', pattern: /^(?:\+61|61)?[-\s]?\d{9}$/ },            // Australia
-    AW: { code: '+297', pattern: /^(?:\+297|297)?[-\s]?\d{7}$/ },          // Aruba
-    AX: { code: '+358', pattern: /^(?:\+358|358)?[-\s]?\d{6,12}$/ },       // Åland Islands
-    AZ: { code: '+994', pattern: /^(?:\+994|994)?[-\s]?\d{9}$/ },          // Azerbaijan
-    BA: { code: '+387', pattern: /^(?:\+387|387)?[-\s]?\d{8}$/ },          // Bosnia and Herzegovina
-    BB: { code: '+1(246)', pattern: /^(?:\+1\(246\)|1\(246\))?[-\s]?\d{7}$/ }, // Barbados
-    BD: { code: '+880', pattern: /^(?:\+880|880)?[-\s]?\d{10}$/ },         // Bangladesh
-    BE: { code: '+32', pattern: /^(?:\+32|32)?[-\s]?\d{9}$/ },            // Belgium
-    BF: { code: '+226', pattern: /^(?:\+226|226)?[-\s]?\d{8}$/ },          // Burkina Faso
-    BG: { code: '+359', pattern: /^(?:\+359|359)?[-\s]?\d{9}$/ },          // Bulgaria
-    BH: { code: '+973', pattern: /^(?:\+973|973)?[-\s]?\d{8}$/ },          // Bahrain
-    BI: { code: '+257', pattern: /^(?:\+257|257)?[-\s]?\d{8}$/ },          // Burundi
-    BJ: { code: '+229', pattern: /^(?:\+229|229)?[-\s]?\d{8}$/ },          // Benin
-    BL: { code: '+590', pattern: /^(?:\+590|590)?[-\s]?\d{9}$/ },          // Saint Barthélemy
-    BM: { code: '+1(441)', pattern: /^(?:\+1\(441\)|1\(441\))?[-\s]?\d{7}$/ }, // Bermuda
-    BN: { code: '+673', pattern: /^(?:\+673|673)?[-\s]?\d{7}$/ },          // Brunei Darussalam
-    BO: { code: '+591', pattern: /^(?:\+591|591)?[-\s]?\d{8}$/ },          // Bolivia
-    BR: { code: '+55', pattern: /^(?:\+55|55)?[-\s]?\d{10,11}$/ },        // Brazil
-    BS: { code: '+1(242)', pattern: /^(?:\+1\(242\)|1\(242\))?[-\s]?\d{7}$/ }, // Bahamas
-    BT: { code: '+975', pattern: /^(?:\+975|975)?[-\s]?\d{8}$/ },          // Bhutan
-    BW: { code: '+267', pattern: /^(?:\+267|267)?[-\s]?\d{7,8}$/ },        // Botswana
-    BY: { code: '+375', pattern: /^(?:\+375|375)?[-\s]?\d{9}$/ },          // Belarus
-    BZ: { code: '+501', pattern: /^(?:\+501|501)?[-\s]?\d{7}$/ },          // Belize
-    CA: { code: '+1', pattern: /^(?:\+1|1)?[-\s]?\d{10}$/ },             // Canada
-    CH: { code: '+41', pattern: /^(?:\+41|41)?[-\s]?\d{9}$/ },            // Switzerland
-    CN: { code: '+86', pattern: /^(?:\+86|86)?[-\s]?\d{11}$/ },           // China
-    CO: { code: '+57', pattern: /^(?:\+57|57)?[-\s]?\d{10}$/ },           // Colombia
-    CR: { code: '+506', pattern: /^(?:\+506|506)?[-\s]?\d{8}$/ },          // Costa Rica
-    CU: { code: '+53', pattern: /^(?:\+53|53)?[-\s]?\d{8}$/ },            // Cuba
-    CZ: { code: '+420', pattern: /^(?:\+420|420)?[-\s]?\d{9}$/ },          // Czech Republic
-    DE: { code: '+49', pattern: /^(?:\+49|49)?[-\s]?\d{10,14}$/ },        // Germany
-    DK: { code: '+45', pattern: /^(?:\+45|45)?[-\s]?\d{8}$/ },            // Denmark
-    DO: { code: '+1(809|829|849)', pattern: /^(?:\+1\((809|829|849)\)|1\((809|829|849)\))?[-\s]?\d{7}$/ }, // Dominican Republic
-    DZ: { code: '+213', pattern: /^(?:\+213|213)?[-\s]?\d{9}$/ },          // Algeria
-    EG: { code: '+20', pattern: /^(?:\+20|20)?[-\s]?\d{10}$/ },           // Egypt
-    ES: { code: '+34', pattern: /^(?:\+34|34)?[-\s]?\d{9}$/ },            // Spain
-    FI: { code: '+358', pattern: /^(?:\+358|358)?[-\s]?\d{6,12}$/ },       // Finland
-    FR: { code: '+33', pattern: /^(?:\+33|33)?[-\s]?\d{9}$/ },            // France
-    GB: { code: '+44', pattern: /^(?:\+44|44)?[-\s]?\d{10}$/ },           // United Kingdom
-    GH: { code: '+233', pattern: /^(?:\+233|233)?[-\s]?\d{9}$/ },          // Ghana
-    GM: { code: '+220', pattern: /^(?:\+220|220)?[-\s]?\d{7}$/ },          // Gambia
-    GR: { code: '+30', pattern: /^(?:\+30|30)?[-\s]?\d{10}$/ },           // Greece
-    GT: { code: '+502', pattern: /^(?:\+502|502)?[-\s]?\d{8}$/ },          // Guatemala
-    HK: { code: '+852', pattern: /^(?:\+852|852)?[-\s]?\d{8}$/ },          // Hong Kong
-    HN: { code: '+504', pattern: /^(?:\+504|504)?[-\s]?\d{8}$/ },          // Honduras
-    HR: { code: '+385', pattern: /^(?:\+385|385)?[-\s]?\d{8,9}$/ },        // Croatia
-    HU: { code: '+36', pattern: /^(?:\+36|36)?[-\s]?\d{9}$/ },            // Hungary
-    ID: { code: '+62', pattern: /^(?:\+62|62)?[-\s]?\d{9,11}$/ },         // Indonesia
-    IE: { code: '+353', pattern: /^(?:\+353|353)?[-\s]?\d{9}$/ },          // Ireland
-    IL: { code: '+972', pattern: /^(?:\+972|972)?[-\s]?\d{9}$/ },          // Israel
-    IN: { code: '+91', pattern: /^(?:\+91|91)?[-\s]?[6-9]\d{9}$/ },       // India
-    IQ: { code: '+964', pattern: /^(?:\+964|964)?[-\s]?\d{10}$/ },         // Iraq
-    IR: { code: '+98', pattern: /^(?:\+98|98)?[-\s]?\d{10}$/ },           // Iran
-    IS: { code: '+354', pattern: /^(?:\+354|354)?[-\s]?\d{7}$/ },          // Iceland
-    IT: { code: '+39', pattern: /^(?:\+39|39)?[-\s]?\d{10}$/ },           // Italy
-    JM: { code: '+1(876)', pattern: /^(?:\+1\(876\)|1\(876\))?[-\s]?\d{7}$/ }, // Jamaica
-    JO: { code: '+962', pattern: /^(?:\+962|962)?[-\s]?\d{9}$/ },          // Jordan
-    JP: { code: '+81', pattern: /^(?:\+81|81)?[-\s]?\d{10}$/ },           // Japan
-    KE: { code: '+254', pattern: /^(?:\+254|254)?[-\s]?\d{9}$/ },          // Kenya
-    KG: { code: '+996', pattern: /^(?:\+996|996)?[-\s]?\d{9}$/ },          // Kyrgyzstan
-    KH: { code: '+855', pattern: /^(?:\+855|855)?[-\s]?\d{9}$/ },          // Cambodia
-    KI: { code: '+686', pattern: /^(?:\+686|686)?[-\s]?\d{7}$/ },          // Kiribati
-    KM: { code: '+269', pattern: /^(?:\+269|269)?[-\s]?\d{7}$/ },          // Comoros
-    KN: { code: '+1(869)', pattern: /^(?:\+1\(869\)|1\(869\))?[-\s]?\d{7}$/ }, // Saint Kitts and Nevis
-    KP: { code: '+850', pattern: /^(?:\+850|850)?[-\s]?\d{8}$/ },          // North Korea
-    KR: { code: '+82', pattern: /^(?:\+82|82)?[-\s]?\d{10}$/ },           // South Korea
-    KW: { code: '+965', pattern: /^(?:\+965|965)?[-\s]?\d{8}$/ },          // Kuwait
-    KY: { code: '+1(345)', pattern: /^(?:\+1\(345\)|1\(345\))?[-\s]?\d{7}$/ }, // Cayman Islands
-    KZ: { code: '+7', pattern: /^(?:\+7|7)?[-\s]?\d{10}$/ },             // Kazakhstan
-    LA: { code: '+856', pattern: /^(?:\+856|856)?[-\s]?\d{8}$/ },          // Laos
-    LB: { code: '+961', pattern: /^(?:\+961|961)?[-\s]?\d{8}$/ },          // Lebanon
-    LC: { code: '+1(758)', pattern: /^(?:\+1\(758\)|1\(758\))?[-\s]?\d{7}$/ }, // Saint Lucia
-    LI: { code: '+423', pattern: /^(?:\+423|423)?[-\s]?\d{8}$/ },          // Liechtenstein
-    LK: { code: '+94', pattern: /^(?:\+94|94)?[-\s]?\d{9}$/ },            // Sri Lanka
-    LR: { code: '+231', pattern: /^(?:\+231|231)?[-\s]?\d{8}$/ },          // Liberia
-    LS: { code: '+266', pattern: /^(?:\+266|266)?[-\s]?\d{8}$/ },          // Lesotho
-    LT: { code: '+370', pattern: /^(?:\+370|370)?[-\s]?\d{8}$/ },          // Lithuania
-    LU: { code: '+352', pattern: /^(?:\+352|352)?[-\s]?\d{6,9}$/ },        // Luxembourg
-    LV: { code: '+371', pattern: /^(?:\+371|371)?[-\s]?\d{8}$/ },          // Latvia
-    LY: { code: '+218', pattern: /^(?:\+218|218)?[-\s]?\d{9}$/ },          // Libya
-    MA: { code: '+212', pattern: /^(?:\+212|212)?[-\s]?\d{9}$/ },          // Morocco
-    MC: { code: '+377', pattern: /^(?:\+377|377)?[-\s]?\d{8}$/ },          // Monaco
-    MD: { code: '+373', pattern: /^(?:\+373|373)?[-\s]?\d{8}$/ },          // Moldova
-    ME: { code: '+382', pattern: /^(?:\+382|382)?[-\s]?\d{8}$/ },          // Montenegro
-    MF: { code: '+590', pattern: /^(?:\+590|590)?[-\s]?\d{9}$/ },          // Saint Martin
-    MG: { code: '+261', pattern: /^(?:\+261|261)?[-\s]?\d{9}$/ },          // Madagascar
-    MH: { code: '+692', pattern: /^(?:\+692|692)?[-\s]?\d{7}$/ },          // Marshall Islands
-    MK: { code: '+389', pattern: /^(?:\+389|389)?[-\s]?\d{8}$/ },          // North Macedonia
-    ML: { code: '+223', pattern: /^(?:\+223|223)?[-\s]?\d{8}$/ },          // Mali
-    MM: { code: '+95', pattern: /^(?:\+95|95)?[-\s]?\d{9}$/ },            // Myanmar
-    MN: { code: '+976', pattern: /^(?:\+976|976)?[-\s]?\d{8}$/ },          // Mongolia
-    MO: { code: '+853', pattern: /^(?:\+853|853)?[-\s]?\d{8}$/ },          // Macau
-    MP: { code: '+1(670)', pattern: /^(?:\+1\(670\)|1\(670\))?[-\s]?\d{7}$/ }, // Northern Mariana Islands
-    MQ: { code: '+596', pattern: /^(?:\+596|596)?[-\s]?\d{9}$/ },          // Martinique
-    MR: { code: '+222', pattern: /^(?:\+222|222)?[-\s]?\d{8}$/ },          // Mauritania
-    MS: { code: '+1(664)', pattern: /^(?:\+1\(664\)|1\(664\))?[-\s]?\d{7}$/ }, // Montserrat
-    MT: { code: '+356', pattern: /^(?:\+356|356)?[-\s]?\d{8}$/ },          // Malta
-    MU: { code: '+230', pattern: /^(?:\+230|230)?[-\s]?\d{8}$/ },          // Mauritius
-    MV: { code: '+960', pattern: /^(?:\+960|960)?[-\s]?\d{7}$/ },          // Maldives
-    MW: { code: '+265', pattern: /^(?:\+265|265)?[-\s]?\d{9}$/ },          // Malawi
-    MX: { code: '+52', pattern: /^(?:\+52|52)?[-\s]?\d{10}$/ },           // Mexico
-    MY: { code: '+60', pattern: /^(?:\+60|60)?[-\s]?\d{9}$/ },            // Malaysia
-    MZ: { code: '+258', pattern: /^(?:\+258|258)?[-\s]?\d{9}$/ },          // Mozambique
-    NA: { code: '+264', pattern: /^(?:\+264|264)?[-\s]?\d{8}$/ },          // Namibia
-    NC: { code: '+687', pattern: /^(?:\+687|687)?[-\s]?\d{8}$/ },          // New Caledonia
-    NE: { code: '+227', pattern: /^(?:\+227|227)?[-\s]?\d{8}$/ },          // Niger
-    NF: { code: '+672', pattern: /^(?:\+672|672)?[-\s]?\d{4}$/ },          // Norfolk Island
-    NG: { code: '+234', pattern: /^(?:\+234|234)?[-\s]?\d{10}$/ },         // Nigeria
-    NI: { code: '+505', pattern: /^(?:\+505|505)?[-\s]?\d{8}$/ },          // Nicaragua
-    NL: { code: '+31', pattern: /^(?:\+31|31)?[-\s]?\d{9}$/ },            // Netherlands
-    NO: { code: '+47', pattern: /^(?:\+47|47)?[-\s]?\d{8}$/ },            // Norway
-    NP: { code: '+977', pattern: /^(?:\+977|977)?[-\s]?\d{10}$/ },         // Nepal
-    NR: { code: '+674', pattern: /^(?:\+674|674)?[-\s]?\d{7}$/ },          // Nauru
-    NU: { code: '+683', pattern: /^(?:\+683|683)?[-\s]?\d{4}$/ },          // Niue
-    NZ: { code: '+64', pattern: /^(?:\+64|64)?[-\s]?\d{9}$/ },            // New Zealand
-    OM: { code: '+968', pattern: /^(?:\+968|968)?[-\s]?\d{8}$/ },          // Oman
-    PA: { code: '+507', pattern: /^(?:\+507|507)?[-\s]?\d{8}$/ },          // Panama
-    PE: { code: '+51', pattern: /^(?:\+51|51)?[-\s]?\d{9}$/ },            // Peru
-    PF: { code: '+689', pattern: /^(?:\+689|689)?[-\s]?\d{6}$/ },          // French Polynesia
-    PG: { code: '+675', pattern: /^(?:\+675|675)?[-\s]?\d{8}$/ },          // Papua New Guinea
-    PH: { code: '+63', pattern: /^(?:\+63|63)?[-\s]?\d{10}$/ },           // Philippines
-    PK: { code: '+92', pattern: /^(?:\+92|92)?[-\s]?\d{10}$/ },           // Pakistan
-    PL: { code: '+48', pattern: /^(?:\+48|48)?[-\s]?\d{9}$/ },            // Poland
-    PM: { code: '+508', pattern: /^(?:\+508|508)?[-\s]?\d{6}$/ },          // Saint Pierre and Miquelon
-    PN: { code: '+870', pattern: /^(?:\+870|870)?[-\s]?\d{8}$/ },          // Pitcairn Islands
-    PR: { code: '+1(787)', pattern: /^(?:\+1\(787\)|1\(787\))?[-\s]?\d{7}$/ }, // Puerto Rico
-    PT: { code: '+351', pattern: /^(?:\+351|351)?[-\s]?\d{9}$/ },          // Portugal
-    PW: { code: '+680', pattern: /^(?:\+680|680)?[-\s]?\d{7}$/ },          // Palau
-    PY: { code: '+595', pattern: /^(?:\+595|595)?[-\s]?\d{9}$/ },          // Paraguay
-    QA: { code: '+974', pattern: /^(?:\+974|974)?[-\s]?\d{8}$/ },          // Qatar
-    RE: { code: '+262', pattern: /^(?:\+262|262)?[-\s]?\d{9}$/ },          // Réunion
-    RO: { code: '+40', pattern: /^(?:\+40|40)?[-\s]?\d{9}$/ },            // Romania
-    RS: { code: '+381', pattern: /^(?:\+381|381)?[-\s]?\d{8}$/ },          // Serbia
-    RU: { code: '+7', pattern: /^(?:\+7|7)?[-\s]?\d{10}$/ },             // Russia
-    RW: { code: '+250', pattern: /^(?:\+250|250)?[-\s]?\d{9}$/ },          // Rwanda
-    SA: { code: '+966', pattern: /^(?:\+966|966)?[-\s]?\d{9}$/ },          // Saudi Arabia
-    SB: { code: '+677', pattern: /^(?:\+677|677)?[-\s]?\d{7}$/ },          // Solomon Islands
-    SC: { code: '+248', pattern: /^(?:\+248|248)?[-\s]?\d{7}$/ },          // Seychelles
-    SD: { code: '+249', pattern: /^(?:\+249|249)?[-\s]?\d{9}$/ },          // Sudan
-    SE: { code: '+46', pattern: /^(?:\+46|46)?[-\s]?\d{9}$/ },            // Sweden
-    SG: { code: '+65', pattern: /^(?:\+65|65)?[-\s]?\d{8}$/ },            // Singapore
-    SH: { code: '+290', pattern: /^(?:\+290|290)?[-\s]?\d{4}$/ },          // Saint Helena
-    SI: { code: '+386', pattern: /^(?:\+386|386)?[-\s]?\d{8}$/ },          // Slovenia
-    SJ: { code: '+47', pattern: /^(?:\+47|47)?[-\s]?\d{8}$/ },            // Svalbard and Jan Mayen
-    SK: { code: '+421', pattern: /^(?:\+421|421)?[-\s]?\d{9}$/ },          // Slovakia
-    SL: { code: '+232', pattern: /^(?:\+232|232)?[-\s]?\d{8}$/ },          // Sierra Leone
-    SM: { code: '+378', pattern: /^(?:\+378|378)?[-\s]?\d{8}$/ },          // San Marino
-    SN: { code: '+221', pattern: /^(?:\+221|221)?[-\s]?\d{9}$/ },          // Senegal
-    SO: { code: '+252', pattern: /^(?:\+252|252)?[-\s]?\d{9}$/ },          // Somalia
-    SR: { code: '+597', pattern: /^(?:\+597|597)?[-\s]?\d{8}$/ },          // Suriname
-    SS: { code: '+211', pattern: /^(?:\+211|211)?[-\s]?\d{9}$/ },          // South Sudan
-    ST: { code: '+239', pattern: /^(?:\+239|239)?[-\s]?\d{7}$/ },          // São Tomé and Príncipe
-    SV: { code: '+503', pattern: /^(?:\+503|503)?[-\s]?\d{8}$/ },          // El Salvador
-    SX: { code: '+1(721)', pattern: /^(?:\+1\(721\)|1\(721\))?[-\s]?\d{7}$/ }, // Sint Maarten
-    SY: { code: '+963', pattern: /^(?:\+963|963)?[-\s]?\d{8}$/ },          // Syria
-    SZ: { code: '+268', pattern: /^(?:\+268|268)?[-\s]?\d{8}$/ },          // Eswatini
-    TC: { code: '+1(649)', pattern: /^(?:\+1\(649\)|1\(649\))?[-\s]?\d{7}$/ }, // Turks and Caicos Islands
-    TD: { code: '+235', pattern: /^(?:\+235|235)?[-\s]?\d{8}$/ },          // Chad
-    TF: { code: '+262', pattern: /^(?:\+262|262)?[-\s]?\d{9}$/ },          // French Southern Territories
-    TG: { code: '+228', pattern: /^(?:\+228|228)?[-\s]?\d{8}$/ },          // Togo
-    TH: { code: '+66', pattern: /^(?:\+66|66)?[-\s]?\d{9}$/ },            // Thailand
-    TJ: { code: '+992', pattern: /^(?:\+992|992)?[-\s]?\d{9}$/ },          // Tajikistan
-    TK: { code: '+690', pattern: /^(?:\+690|690)?[-\s]?\d{4}$/ },          // Tokelau
-    TL: { code: '+670', pattern: /^(?:\+670|670)?[-\s]?\d{7}$/ },          // Timor-Leste
-    TM: { code: '+993', pattern: /^(?:\+993|993)?[-\s]?\d{8}$/ },          // Turkmenistan
-    TN: { code: '+216', pattern: /^(?:\+216|216)?[-\s]?\d{8}$/ },          // Tunisia
-    TO: { code: '+676', pattern: /^(?:\+676|676)?[-\s]?\d{4}$/ },          // Tonga
-    TR: { code: '+90', pattern: /^(?:\+90|90)?[-\s]?\d{10}$/ },           // Turkey
-    TT: { code: '+1(868)', pattern: /^(?:\+1\(868\)|1\(868\))?[-\s]?\d{7}$/ }, // Trinidad and Tobago
-    TV: { code: '+688', pattern: /^(?:\+688|688)?[-\s]?\d{4}$/ },          // Tuvalu
-    TZ: { code: '+255', pattern: /^(?:\+255|255)?[-\s]?\d{9}$/ },          // Tanzania
-    UA: { code: '+380', pattern: /^(?:\+380|380)?[-\s]?\d{9}$/ },          // Ukraine
-    UG: { code: '+256', pattern: /^(?:\+256|256)?[-\s]?\d{9}$/ },          // Uganda
-    US: { code: '+1', pattern: /^(?:\+1|1)?[-\s]?\d{10}$/ },             // United States
-    UY: { code: '+598', pattern: /^(?:\+598|598)?[-\s]?\d{8}$/ },          // Uruguay
-    UZ: { code: '+998', pattern: /^(?:\+998|998)?[-\s]?\d{9}$/ },          // Uzbekistan
-    VA: { code: '+39', pattern: /^(?:\+39|39)?[-\s]?\d{9}$/ },            // Vatican City
-    VC: { code: '+1(784)', pattern: /^(?:\+1\(784\)|1\(784\))?[-\s]?\d{7}$/ }, // Saint Vincent and the Grenadines
-    VE: { code: '+58', pattern: /^(?:\+58|58)?[-\s]?\d{10}$/ },           // Venezuela
-    VG: { code: '+1(284)', pattern: /^(?:\+1\(284\)|1\(284\))?[-\s]?\d{7}$/ }, // British Virgin Islands
-    VI: { code: '+1(340)', pattern: /^(?:\+1\(340\)|1\(340\))?[-\s]?\d{7}$/ }, // U.S. Virgin Islands
-    VN: { code: '+84', pattern: /^(?:\+84|84)?[-\s]?\d{9}$/ },            // Vietnam
-    VU: { code: '+678', pattern: /^(?:\+678|678)?[-\s]?\d{7}$/ },          // Vanuatu
-    WF: { code: '+681', pattern: /^(?:\+681|681)?[-\s]?\d{6}$/ },          // Wallis and Futuna
-    WS: { code: '+685', pattern: /^(?:\+685|685)?[-\s]?\d{5}$/ },          // Samoa
-    YE: { code: '+967', pattern: /^(?:\+967|967)?[-\s]?\d{9}$/ },          // Yemen
-    ZA: { code: '+27', pattern: /^(?:\+27|27)?[-\s]?\d{9}$/ },            // South Africa
-    ZM: { code: '+260', pattern: /^(?:\+260|260)?[-\s]?\d{9}$/ },          // Zambia
-    ZW: { code: '+263', pattern: /^(?:\+263|263)?[-\s]?\d{9}$/ },          // Zimbabwe
+    AC: { code: '+247', country_name: 'Ascension Island', pattern: /^(?:\+247|247)?[-\s]?\d{4}$/ },
+    AD: { code: '+376', country_name: 'Andorra', pattern: /^(?:\+376|376)?[-\s]?\d{6}$/ },
+    AE: { code: '+971', country_name: 'United Arab Emirates', pattern: /^(?:\+971|971)?[-\s]?\d{9}$/ },
+    AF: { code: '+93', country_name: 'Afghanistan', pattern: /^(?:\+93|93)?[-\s]?\d{9}$/ },
+    AG: { code: '+1(268)', country_name: 'Antigua and Barbuda', pattern: /^(?:\+1\(268\)|1\(268\))?[-\s]?\d{7}$/ },
+    AI: { code: '+1(264)', country_name: 'Anguilla', pattern: /^(?:\+1\(264\)|1\(264\))?[-\s]?\d{7}$/ },
+    AL: { code: '+355', country_name: 'Albania', pattern: /^(?:\+355|355)?[-\s]?\d{9}$/ },
+    AM: { code: '+374', country_name: 'Armenia', pattern: /^(?:\+374|374)?[-\s]?\d{8}$/ },
+    AO: { code: '+244', country_name: 'Angola', pattern: /^(?:\+244|244)?[-\s]?\d{9}$/ },
+    AR: { code: '+54', country_name: 'Argentina', pattern: /^(?:\+54|54)?[-\s]?\d{10}$/ },
+    AS: { code: '+1(684)', country_name: 'American Samoa', pattern: /^(?:\+1\(684\)|1\(684\))?[-\s]?\d{7}$/ },
+    AT: { code: '+43', country_name: 'Austria', pattern: /^(?:\+43|43)?[-\s]?\d{10}$/ },
+    AU: { code: '+61', country_name: 'Australia', pattern: /^(?:\+61|61)?[-\s]?\d{9}$/ },
+    AW: { code: '+297', country_name: 'Aruba', pattern: /^(?:\+297|297)?[-\s]?\d{7}$/ },
+    AX: { code: '+358', country_name: 'Åland Islands', pattern: /^(?:\+358|358)?[-\s]?\d{6,12}$/ },
+    AZ: { code: '+994', country_name: 'Azerbaijan', pattern: /^(?:\+994|994)?[-\s]?\d{9}$/ },
+    BA: { code: '+387', country_name: 'Bosnia and Herzegovina', pattern: /^(?:\+387|387)?[-\s]?\d{8}$/ },
+    BB: { code: '+1(246)', country_name: 'Barbados', pattern: /^(?:\+1\(246\)|1\(246\))?[-\s]?\d{7}$/ },
+    BD: { code: '+880', country_name: 'Bangladesh', pattern: /^(?:\+880|880)?[-\s]?\d{10}$/ },
+    BE: { code: '+32', country_name: 'Belgium', pattern: /^(?:\+32|32)?[-\s]?\d{9}$/ },
+    BF: { code: '+226', country_name: 'Burkina Faso', pattern: /^(?:\+226|226)?[-\s]?\d{8}$/ },
+    BG: { code: '+359', country_name: 'Bulgaria', pattern: /^(?:\+359|359)?[-\s]?\d{9}$/ },
+    BH: { code: '+973', country_name: 'Bahrain', pattern: /^(?:\+973|973)?[-\s]?\d{8}$/ },
+    BI: { code: '+257', country_name: 'Burundi', pattern: /^(?:\+257|257)?[-\s]?\d{8}$/ },
+    BJ: { code: '+229', country_name: 'Benin', pattern: /^(?:\+229|229)?[-\s]?\d{8}$/ },
+    BL: { code: '+590', country_name: 'Saint Barthélemy', pattern: /^(?:\+590|590)?[-\s]?\d{9}$/ },
+    BM: { code: '+1(441)', country_name: 'Bermuda', pattern: /^(?:\+1\(441\)|1\(441\))?[-\s]?\d{7}$/ },
+    BN: { code: '+673', country_name: 'Brunei Darussalam', pattern: /^(?:\+673|673)?[-\s]?\d{7}$/ },
+    BO: { code: '+591', country_name: 'Bolivia', pattern: /^(?:\+591|591)?[-\s]?\d{8}$/ },
+    BR: { code: '+55', country_name: 'Brazil', pattern: /^(?:\+55|55)?[-\s]?\d{10,11}$/ },
+    BS: { code: '+1(242)', country_name: 'Bahamas', pattern: /^(?:\+1\(242\)|1\(242\))?[-\s]?\d{7}$/ },
+    BT: { code: '+975', country_name: 'Bhutan', pattern: /^(?:\+975|975)?[-\s]?\d{8}$/ },
+    BW: { code: '+267', country_name: 'Botswana', pattern: /^(?:\+267|267)?[-\s]?\d{7,8}$/ },
+    BY: { code: '+375', country_name: 'Belarus', pattern: /^(?:\+375|375)?[-\s]?\d{9}$/ },
+    BZ: { code: '+501', country_name: 'Belize', pattern: /^(?:\+501|501)?[-\s]?\d{7}$/ },
+    CA: { code: '+1', country_name: 'Canada', pattern: /^(?:\+1|1)?[-\s]?\d{10}$/ },
+    CH: { code: '+41', country_name: 'Switzerland', pattern: /^(?:\+41|41)?[-\s]?\d{9}$/ },
+    CN: { code: '+86', country_name: 'China', pattern: /^(?:\+86|86)?[-\s]?\d{11}$/ },
+    CO: { code: '+57', country_name: 'Colombia', pattern: /^(?:\+57|57)?[-\s]?\d{10}$/ },
+    CR: { code: '+506', country_name: 'Costa Rica', pattern: /^(?:\+506|506)?[-\s]?\d{8}$/ },
+    CU: { code: '+53', country_name: 'Cuba', pattern: /^(?:\+53|53)?[-\s]?\d{8}$/ },
+    CZ: { code: '+420', country_name: 'Czech Republic', pattern: /^(?:\+420|420)?[-\s]?\d{9}$/ },
+    DE: { code: '+49', country_name: 'Germany', pattern: /^(?:\+49|49)?[-\s]?\d{10,14}$/ },
+    DK: { code: '+45', country_name: 'Denmark', pattern: /^(?:\+45|45)?[-\s]?\d{8}$/ },
+    DO: { code: '+1(809|829|849)', country_name: 'Dominican Republic', pattern: /^(?:\+1\((809|829|849)\)|1\((809|829|849)\))?[-\s]?\d{7}$/ },
+    DZ: { code: '+213', country_name: 'Algeria', pattern: /^(?:\+213|213)?[-\s]?\d{9}$/ },
+    EG: { code: '+20', country_name: 'Egypt', pattern: /^(?:\+20|20)?[-\s]?\d{10}$/ },
+    ES: { code: '+34', country_name: 'Spain', pattern: /^(?:\+34|34)?[-\s]?\d{9}$/ },
+    FI: { code: '+358', country_name: 'Finland', pattern: /^(?:\+358|358)?[-\s]?\d{6,12}$/ },
+    FR: { code: '+33', country_name: 'France', pattern: /^(?:\+33|33)?[-\s]?\d{9}$/ },
+    GB: { code: '+44', country_name: 'United Kingdom', pattern: /^(?:\+44|44)?[-\s]?\d{10}$/ },
+    GH: { code: '+233', country_name: 'Ghana', pattern: /^(?:\+233|233)?[-\s]?\d{9}$/ },
+    GM: { code: '+220', country_name: 'Gambia', pattern: /^(?:\+220|220)?[-\s]?\d{7}$/ },
+    GR: { code: '+30', country_name: 'Greece', pattern: /^(?:\+30|30)?[-\s]?\d{10}$/ },
+    GT: { code: '+502', country_name: 'Guatemala', pattern: /^(?:\+502|502)?[-\s]?\d{8}$/ },
+    HK: { code: '+852', country_name: 'Hong Kong', pattern: /^(?:\+852|852)?[-\s]?\d{8}$/ },
+    HN: { code: '+504', country_name: 'Honduras', pattern: /^(?:\+504|504)?[-\s]?\d{8}$/ },
+    HR: { code: '+385', country_name: 'Croatia', pattern: /^(?:\+385|385)?[-\s]?\d{8,9}$/ },
+    HU: { code: '+36', country_name: 'Hungary', pattern: /^(?:\+36|36)?[-\s]?\d{9}$/ },
+    ID: { code: '+62', country_name: 'Indonesia', pattern: /^(?:\+62|62)?[-\s]?\d{9,11}$/ },
+    IE: { code: '+353', country_name: 'Ireland', pattern: /^(?:\+353|353)?[-\s]?\d{9}$/ },
+    IL: { code: '+972', country_name: 'Israel', pattern: /^(?:\+972|972)?[-\s]?\d{9}$/ },
+    IN: { code: '+91', country_name: 'India', pattern: /^(?:\+91|91)?[-\s]?[6-9]\d{9}$/ },
+    IQ: { code: '+964', country_name: 'Iraq', pattern: /^(?:\+964|964)?[-\s]?\d{10}$/ },
+    IR: { code: '+98', country_name: 'Iran', pattern: /^(?:\+98|98)?[-\s]?\d{10}$/ },
+    IS: { code: '+354', country_name: 'Iceland', pattern: /^(?:\+354|354)?[-\s]?\d{7}$/ },
+    IT: { code: '+39', country_name: 'Italy', pattern: /^(?:\+39|39)?[-\s]?\d{10}$/ },
+    JM: { code: '+1(876)', country_name: 'Jamaica', pattern: /^(?:\+1\(876\)|1\(876\))?[-\s]?\d{7}$/ },
+    JO: { code: '+962', country_name: 'Jordan', pattern: /^(?:\+962|962)?[-\s]?\d{9}$/ },
+    JP: { code: '+81', country_name: 'Japan', pattern: /^(?:\+81|81)?[-\s]?\d{10}$/ },
+    KE: { code: '+254', country_name: 'Kenya', pattern: /^(?:\+254|254)?[-\s]?\d{9}$/ },
+    KG: { code: '+996', country_name: 'Kyrgyzstan', pattern: /^(?:\+996|996)?[-\s]?\d{9}$/ },
+    KH: { code: '+855', country_name: 'Cambodia', pattern: /^(?:\+855|855)?[-\s]?\d{9}$/ },
+    KI: { code: '+686', country_name: 'Kiribati', pattern: /^(?:\+686|686)?[-\s]?\d{7}$/ },
+    KM: { code: '+269', country_name: 'Comoros', pattern: /^(?:\+269|269)?[-\s]?\d{7}$/ },
+    KN: { code: '+1(869)', country_name: 'Saint Kitts and Nevis', pattern: /^(?:\+1\(869\)|1\(869\))?[-\s]?\d{7}$/ },
+    KP: { code: '+850', country_name: 'North Korea', pattern: /^(?:\+850|850)?[-\s]?\d{8}$/ },
+    KR: { code: '+82', country_name: 'South Korea', pattern: /^(?:\+82|82)?[-\s]?\d{10}$/ },
+    KW: { code: '+965', country_name: 'Kuwait', pattern: /^(?:\+965|965)?[-\s]?\d{8}$/ },
+    KY: { code: '+1(345)', country_name: 'Cayman Islands', pattern: /^(?:\+1\(345\)|1\(345\))?[-\s]?\d{7}$/ },
+    KZ: { code: '+7', country_name: 'Kazakhstan', pattern: /^(?:\+7|7)?[-\s]?\d{10}$/ },
+    LA: { code: '+856', country_name: 'Laos', pattern: /^(?:\+856|856)?[-\s]?\d{8}$/ },
+    LB: { code: '+961', country_name: 'Lebanon', pattern: /^(?:\+961|961)?[-\s]?\d{8}$/ },
+    LC: { code: '+1(758)', country_name: 'Saint Lucia', pattern: /^(?:\+1\(758\)|1\(758\))?[-\s]?\d{7}$/ },
+    LI: { code: '+423', country_name: 'Liechtenstein', pattern: /^(?:\+423|423)?[-\s]?\d{8}$/ },
+    LK: { code: '+94', country_name: 'Sri Lanka', pattern: /^(?:\+94|94)?[-\s]?\d{9}$/ },
+    LR: { code: '+231', country_name: 'Liberia', pattern: /^(?:\+231|231)?[-\s]?\d{8}$/ },
+    LS: { code: '+266', country_name: 'Lesotho', pattern: /^(?:\+266|266)?[-\s]?\d{8}$/ },
+    LT: { code: '+370', country_name: 'Lithuania', pattern: /^(?:\+370|370)?[-\s]?\d{8}$/ },
+    LU: { code: '+352', country_name: 'Luxembourg', pattern: /^(?:\+352|352)?[-\s]?\d{6,9}$/ },
+    LV: { code: '+371', country_name: 'Latvia', pattern: /^(?:\+371|371)?[-\s]?\d{8}$/ },
+    LY: { code: '+218', country_name: 'Libya', pattern: /^(?:\+218|218)?[-\s]?\d{9}$/ },
+    MA: { code: '+212', country_name: 'Morocco', pattern: /^(?:\+212|212)?[-\s]?\d{9}$/ },
+    MC: { code: '+377', country_name: 'Monaco', pattern: /^(?:\+377|377)?[-\s]?\d{8}$/ },
+    MD: { code: '+373', country_name: 'Moldova', pattern: /^(?:\+373|373)?[-\s]?\d{8}$/ },
+    ME: { code: '+382', country_name: 'Montenegro', pattern: /^(?:\+382|382)?[-\s]?\d{8}$/ },
+    MF: { code: '+590', country_name: 'Saint Martin', pattern: /^(?:\+590|590)?[-\s]?\d{9}$/ },
+    MG: { code: '+261', country_name: 'Madagascar', pattern: /^(?:\+261|261)?[-\s]?\d{9}$/ },
+    MH: { code: '+692', country_name: 'Marshall Islands', pattern: /^(?:\+692|692)?[-\s]?\d{7}$/ },
+    MK: { code: '+389', country_name: 'North Macedonia', pattern: /^(?:\+389|389)?[-\s]?\d{8}$/ },
+    ML: { code: '+223', country_name: 'Mali', pattern: /^(?:\+223|223)?[-\s]?\d{8}$/ },
+    MM: { code: '+95', country_name: 'Myanmar', pattern: /^(?:\+95|95)?[-\s]?\d{9}$/ },
+    MN: { code: '+976', country_name: 'Mongolia', pattern: /^(?:\+976|976)?[-\s]?\d{8}$/ },
+    MO: { code: '+853', country_name: 'Macau', pattern: /^(?:\+853|853)?[-\s]?\d{8}$/ },
+    MP: { code: '+1(670)', country_name: 'Northern Mariana Islands', pattern: /^(?:\+1\(670\)|1\(670\))?[-\s]?\d{7}$/ },
+    MQ: { code: '+596', country_name: 'Martinique', pattern: /^(?:\+596|596)?[-\s]?\d{9}$/ },
+    MR: { code: '+222', country_name: 'Mauritania', pattern: /^(?:\+222|222)?[-\s]?\d{8}$/ },
+    MS: { code: '+1(664)', country_name: 'Montserrat', pattern: /^(?:\+1\(664\)|1\(664\))?[-\s]?\d{7}$/ },
+    MT: { code: '+356', country_name: 'Malta', pattern: /^(?:\+356|356)?[-\s]?\d{8}$/ },
+    MU: { code: '+230', country_name: 'Mauritius', pattern: /^(?:\+230|230)?[-\s]?\d{8}$/ },
+    MV: { code: '+960', country_name: 'Maldives', pattern: /^(?:\+960|960)?[-\s]?\d{7}$/ },
+    MW: { code: '+265', country_name: 'Malawi', pattern: /^(?:\+265|265)?[-\s]?\d{9}$/ },
+    MX: { code: '+52', country_name: 'Mexico', pattern: /^(?:\+52|52)?[-\s]?\d{10}$/ },
+    MY: { code: '+60', country_name: 'Malaysia', pattern: /^(?:\+60|60)?[-\s]?\d{9}$/ },
+    MZ: { code: '+258', country_name: 'Mozambique', pattern: /^(?:\+258|258)?[-\s]?\d{9}$/ },
+    NA: { code: '+264', country_name: 'Namibia', pattern: /^(?:\+264|264)?[-\s]?\d{8}$/ },
+    NC: { code: '+687', country_name: 'New Caledonia', pattern: /^(?:\+687|687)?[-\s]?\d{8}$/ },
+    NE: { code: '+227', country_name: 'Niger', pattern: /^(?:\+227|227)?[-\s]?\d{8}$/ },
+    NF: { code: '+672', country_name: 'Norfolk Island', pattern: /^(?:\+672|672)?[-\s]?\d{4}$/ },
+    NG: { code: '+234', country_name: 'Nigeria', pattern: /^(?:\+234|234)?[-\s]?\d{10}$/ },
+    NI: { code: '+505', country_name: 'Nicaragua', pattern: /^(?:\+505|505)?[-\s]?\d{8}$/ },
+    NL: { code: '+31', country_name: 'Netherlands', pattern: /^(?:\+31|31)?[-\s]?\d{9}$/ },
+    NO: { code: '+47', country_name: 'Norway', pattern: /^(?:\+47|47)?[-\s]?\d{8}$/ },
+    NP: { code: '+977', country_name: 'Nepal', pattern: /^(?:\+977|977)?[-\s]?\d{10}$/ },
+    NR: { code: '+674', country_name: 'Nauru', pattern: /^(?:\+674|674)?[-\s]?\d{7}$/ },
+    NU: { code: '+683', country_name: 'Niue', pattern: /^(?:\+683|683)?[-\s]?\d{4}$/ },
+    NZ: { code: '+64', country_name: 'New Zealand', pattern: /^(?:\+64|64)?[-\s]?\d{9}$/ },
+    OM: { code: '+968', country_name: 'Oman', pattern: /^(?:\+968|968)?[-\s]?\d{8}$/ },
+    PA: { code: '+507', country_name: 'Panama', pattern: /^(?:\+507|507)?[-\s]?\d{8}$/ },
+    PE: { code: '+51', country_name: 'Peru', pattern: /^(?:\+51|51)?[-\s]?\d{9}$/ },
+    PF: { code: '+689', country_name: 'French Polynesia', pattern: /^(?:\+689|689)?[-\s]?\d{6}$/ },
+    PG: { code: '+675', country_name: 'Papua New Guinea', pattern: /^(?:\+675|675)?[-\s]?\d{8}$/ },
+    PH: { code: '+63', country_name: 'Philippines', pattern: /^(?:\+63|63)?[-\s]?\d{10}$/ },
+    PK: { code: '+92', country_name: 'Pakistan', pattern: /^(?:\+92|92)?[-\s]?\d{10}$/ },
+    PL: { code: '+48', country_name: 'Poland', pattern: /^(?:\+48|48)?[-\s]?\d{9}$/ },
+    PM: { code: '+508', country_name: 'Saint Pierre and Miquelon', pattern: /^(?:\+508|508)?[-\s]?\d{6}$/ },
+    PN: { code: '+870', country_name: 'Pitcairn Islands', pattern: /^(?:\+870|870)?[-\s]?\d{8}$/ },
+    PR: { code: '+1(787)', country_name: 'Puerto Rico', pattern: /^(?:\+1\(787\)|1\(787\))?[-\s]?\d{7}$/ },
+    PT: { code: '+351', country_name: 'Portugal', pattern: /^(?:\+351|351)?[-\s]?\d{9}$/ },
+    PW: { code: '+680', country_name: 'Palau', pattern: /^(?:\+680|680)?[-\s]?\d{7}$/ },
+    PY: { code: '+595', country_name: 'Paraguay', pattern: /^(?:\+595|595)?[-\s]?\d{9}$/ },
+    QA: { code: '+974', country_name: 'Qatar', pattern: /^(?:\+974|974)?[-\s]?\d{8}$/ },
+    RE: { code: '+262', country_name: 'Réunion', pattern: /^(?:\+262|262)?[-\s]?\d{9}$/ },
+    RO: { code: '+40', country_name: 'Romania', pattern: /^(?:\+40|40)?[-\s]?\d{9}$/ },
+    RS: { code: '+381', country_name: 'Serbia', pattern: /^(?:\+381|381)?[-\s]?\d{8}$/ },
+    RU: { code: '+7', country_name: 'Russia', pattern: /^(?:\+7|7)?[-\s]?\d{10}$/ },
+    RW: { code: '+250', country_name: 'Rwanda', pattern: /^(?:\+250|250)?[-\s]?\d{9}$/ },
+    SA: { code: '+966', country_name: 'Saudi Arabia', pattern: /^(?:\+966|966)?[-\s]?\d{9}$/ },
+    SB: { code: '+677', country_name: 'Solomon Islands', pattern: /^(?:\+677|677)?[-\s]?\d{7}$/ },
+    SC: { code: '+248', country_name: 'Seychelles', pattern: /^(?:\+248|248)?[-\s]?\d{7}$/ },
+    SD: { code: '+249', country_name: 'Sudan', pattern: /^(?:\+249|249)?[-\s]?\d{9}$/ },
+    SE: { code: '+46', country_name: 'Sweden', pattern: /^(?:\+46|46)?[-\s]?\d{9}$/ },
+    SG: { code: '+65', country_name: 'Singapore', pattern: /^(?:\+65|65)?[-\s]?\d{8}$/ },
+    SH: { code: '+290', country_name: 'Saint Helena', pattern: /^(?:\+290|290)?[-\s]?\d{4}$/ },
+    SI: { code: '+386', country_name: 'Slovenia', pattern: /^(?:\+386|386)?[-\s]?\d{8}$/ },
+    SJ: { code: '+47', country_name: 'Svalbard and Jan Mayen', pattern: /^(?:\+47|47)?[-\s]?\d{8}$/ },
+    SK: { code: '+421', country_name: 'Slovakia', pattern: /^(?:\+421|421)?[-\s]?\d{9}$/ },
+    SL: { code: '+232', country_name: 'Sierra Leone', pattern: /^(?:\+232|232)?[-\s]?\d{8}$/ },
+    SM: { code: '+378', country_name: 'San Marino', pattern: /^(?:\+378|378)?[-\s]?\d{8}$/ },
+    SN: { code: '+221', country_name: 'Senegal', pattern: /^(?:\+221|221)?[-\s]?\d{9}$/ },
+    SO: { code: '+252', country_name: 'Somalia', pattern: /^(?:\+252|252)?[-\s]?\d{9}$/ },
+    SR: { code: '+597', country_name: 'Suriname', pattern: /^(?:\+597|597)?[-\s]?\d{8}$/ },
+    SS: { code: '+211', country_name: 'South Sudan', pattern: /^(?:\+211|211)?[-\s]?\d{9}$/ },
+    ST: { code: '+239', country_name: 'São Tomé and Príncipe', pattern: /^(?:\+239|239)?[-\s]?\d{7}$/ },
+    SV: { code: '+503', country_name: 'El Salvador', pattern: /^(?:\+503|503)?[-\s]?\d{8}$/ },
+    SX: { code: '+1(721)', country_name: 'Sint Maarten', pattern: /^(?:\+1\(721\)|1\(721\))?[-\s]?\d{7}$/ },
+    SY: { code: '+963', country_name: 'Syria', pattern: /^(?:\+963|963)?[-\s]?\d{8}$/ },
+    SZ: { code: '+268', country_name: 'Eswatini', pattern: /^(?:\+268|268)?[-\s]?\d{8}$/ },
+    TC: { code: '+1(649)', country_name: 'Turks and Caicos Islands', pattern: /^(?:\+1\(649\)|1\(649\))?[-\s]?\d{7}$/ },
+    TD: { code: '+235', country_name: 'Chad', pattern: /^(?:\+235|235)?[-\s]?\d{8}$/ },
+    TF: { code: '+262', country_name: 'French Southern Territories', pattern: /^(?:\+262|262)?[-\s]?\d{9}$/ },
+    TG: { code: '+228', country_name: 'Togo', pattern: /^(?:\+228|228)?[-\s]?\d{8}$/ },
+    TH: { code: '+66', country_name: 'Thailand', pattern: /^(?:\+66|66)?[-\s]?\d{9}$/ },
+    TJ: { code: '+992', country_name: 'Tajikistan', pattern: /^(?:\+992|992)?[-\s]?\d{9}$/ },
+    TK: { code: '+690', country_name: 'Tokelau', pattern: /^(?:\+690|690)?[-\s]?\d{4}$/ },
+    TL: { code: '+670', country_name: 'Timor-Leste', pattern: /^(?:\+670|670)?[-\s]?\d{7}$/ },
+    TM: { code: '+993', country_name: 'Turkmenistan', pattern: /^(?:\+993|993)?[-\s]?\d{8}$/ },
+    TN: { code: '+216', country_name: 'Tunisia', pattern: /^(?:\+216|216)?[-\s]?\d{8}$/ },
+    TO: { code: '+676', country_name: 'Tonga', pattern: /^(?:\+676|676)?[-\s]?\d{4}$/ },
+    TR: { code: '+90', country_name: 'Turkey', pattern: /^(?:\+90|90)?[-\s]?\d{10}$/ },
+    TT: { code: '+1(868)', country_name: 'Trinidad and Tobago', pattern: /^(?:\+1\(868\)|1\(868\))?[-\s]?\d{7}$/ },
+    TV: { code: '+688', country_name: 'Tuvalu', pattern: /^(?:\+688|688)?[-\s]?\d{4}$/ },
+    TZ: { code: '+255', country_name: 'Tanzania', pattern: /^(?:\+255|255)?[-\s]?\d{9}$/ },
+    UA: { code: '+380', country_name: 'Ukraine', pattern: /^(?:\+380|380)?[-\s]?\d{9}$/ },
+    UG: { code: '+256', country_name: 'Uganda', pattern: /^(?:\+256|256)?[-\s]?\d{9}$/ },
+    US: { code: '+1', country_name: 'United States', pattern: /^(?:\+1|1)?[-\s]?\d{10}$/ },
+    UY: { code: '+598', country_name: 'Uruguay', pattern: /^(?:\+598|598)?[-\s]?\d{8}$/ },
+    UZ: { code: '+998', country_name: 'Uzbekistan', pattern: /^(?:\+998|998)?[-\s]?\d{9}$/ },
+    VA: { code: '+39', country_name: 'Vatican City', pattern: /^(?:\+39|39)?[-\s]?\d{9}$/ },
+    VC: { code: '+1(784)', country_name: 'Saint Vincent and the Grenadines', pattern: /^(?:\+1\(784\)|1\(784\))?[-\s]?\d{7}$/ },
+    VE: { code: '+58', country_name: 'Venezuela', pattern: /^(?:\+58|58)?[-\s]?\d{10}$/ },
+    VG: { code: '+1(284)', country_name: 'British Virgin Islands', pattern: /^(?:\+1\(284\)|1\(284\))?[-\s]?\d{7}$/ },
+    VI: { code: '+1(340)', country_name: 'U.S. Virgin Islands', pattern: /^(?:\+1\(340\)|1\(340\))?[-\s]?\d{7}$/ },
+    VN: { code: '+84', country_name: 'Vietnam', pattern: /^(?:\+84|84)?[-\s]?\d{9}$/ },
+    VU: { code: '+678', country_name: 'Vanuatu', pattern: /^(?:\+678|678)?[-\s]?\d{7}$/ },
+    WF: { code: '+681', country_name: 'Wallis and Futuna', pattern: /^(?:\+681|681)?[-\s]?\d{6}$/ },
+    WS: { code: '+685', country_name: 'Samoa', pattern: /^(?:\+685|685)?[-\s]?\d{5}$/ },
+    YE: { code: '+967', country_name: 'Yemen', pattern: /^(?:\+967|967)?[-\s]?\d{9}$/ },
+    ZA: { code: '+27', country_name: 'South Africa', pattern: /^(?:\+27|27)?[-\s]?\d{9}$/ },
+    ZM: { code: '+260', country_name: 'Zambia', pattern: /^(?:\+260|260)?[-\s]?\d{9}$/ },
+    ZW: { code: '+263', country_name: 'Zimbabwe', pattern: /^(?:\+263|263)?[-\s]?\d{9}$/ },
 };

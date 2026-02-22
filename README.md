@@ -1,4 +1,4 @@
-# mobile-validation
+# mobile-sg-validator
 
 > Type-safe international mobile phone number validation for 200+ countries.
 
@@ -26,37 +26,50 @@ import { validateMobileNumber } from 'mobile-sg-validator';
 
 validateMobileNumber('+919876543210');  // true  — India
 validateMobileNumber('+447911123456'); // true  — United Kingdom
-validateMobileNumber('+1234');         // false — too short
+validateMobileNumber('+1234');         // false
 validateMobileNumber('notanumber');    // false
 ```
 
 ### Detailed validation
 
+Returns full country info including `country`, `country_code`, `country_name`, and `mobile_number`:
+
 ```typescript
 import { validateMobileNumberDetailed } from 'mobile-sg-validator';
 
-const result = validateMobileNumberDetailed('+919876543210');
+const result = validateMobileNumberDetailed('+918024571878');
 // {
 //   isValid: true,
 //   country: 'IN',
-//   formattedNumber: '+919876543210'
+//   country_code: '91',
+//   country_name: 'India',
+//   mobile_number: '8024571878',
+//   formattedNumber: '+918024571878'
+// }
+
+const uk = validateMobileNumberDetailed('+447911123456');
+// {
+//   isValid: true,
+//   country: 'GB',
+//   country_code: '44',
+//   country_name: 'United Kingdom',
+//   mobile_number: '7911123456',
+//   formattedNumber: '+447911123456'
 // }
 
 const bad = validateMobileNumberDetailed('+123');
-// {
-//   isValid: false,
-//   error: 'Phone number is not valid'
-// }
+// { isValid: false, error: 'Phone number is not valid' }
 ```
 
-### Access country patterns
+### Access country patterns directly
 
 ```typescript
 import { countryPhonePatterns } from 'mobile-sg-validator';
 
 const india = countryPhonePatterns['IN'];
-console.log(india.code);    // '+91'
-console.log(india.pattern); // /^(?:\+91|91)?[-\s]?[6-9]\d{9}$/
+console.log(india.code);         // '+91'
+console.log(india.country_name); // 'India'
+console.log(india.pattern);      // /^(?:\+91|91)?[-\s]?[6-9]\d{9}$/
 ```
 
 ---
@@ -67,21 +80,20 @@ console.log(india.pattern); // /^(?:\+91|91)?[-\s]?[6-9]\d{9}$/
 
 Returns `true` when the phone number is valid for its detected country.
 
-| Parameter     | Type     | Description                         |
-| ------------- | -------- | ----------------------------------- |
-| `phoneNumber` | `string` | Phone number in E.164 format        |
-
 ---
 
 ### `validateMobileNumberDetailed(phoneNumber: string): ValidationResult`
 
-Returns a detailed result object.
+Returns a detailed result object:
 
 ```typescript
 interface ValidationResult {
   isValid: boolean;
   country?: CountryCode;        // ISO 3166-1 alpha-2, e.g. 'IN'
-  formattedNumber?: string;     // E.164 formatted number
+  country_code?: string;        // Numeric dialing code, e.g. '91'
+  country_name?: string;        // Full country name, e.g. 'India'
+  mobile_number?: string;       // Local digits only, e.g. '8024571878'
+  formattedNumber?: string;     // E.164 format, e.g. '+918024571878'
   error?: string;               // Present when isValid is false
 }
 ```
@@ -90,12 +102,13 @@ interface ValidationResult {
 
 ### `countryPhonePatterns`
 
-A `Readonly<Record<CountryCode, CountryPhonePattern>>` map of all supported countries.
+A `Readonly<Record<CountryCode, CountryPhonePattern>>` map.
 
 ```typescript
 interface CountryPhonePattern {
-  code: string;    // International dialing code, e.g. '+91'
-  pattern: RegExp; // Validation regex for E.164 formatted numbers
+  code: string;         // Dialing code, e.g. '+91'
+  country_name: string; // Full country name, e.g. 'India'
+  pattern: RegExp;      // Validation regex for E.164 numbers
 }
 ```
 
@@ -103,13 +116,13 @@ interface CountryPhonePattern {
 
 ### `CountryCode`
 
-TypeScript union type of all supported ISO 3166-1 alpha-2 country codes (e.g. `'IN' | 'US' | 'GB' | ...`).
+TypeScript union type of all 200+ supported ISO 3166-1 alpha-2 country codes.
 
 ---
 
 ## Supported Countries
 
-200+ countries supported, including all major markets: 🇮🇳 India, 🇺🇸 USA, 🇬🇧 UK, 🇨🇳 China, 🇩🇪 Germany, 🇫🇷 France, 🇯🇵 Japan, and many more.
+200+ countries including 🇮🇳 India, 🇺🇸 USA, 🇬🇧 UK, 🇨🇳 China, 🇩🇪 Germany, 🇫🇷 France, 🇯🇵 Japan, and many more.
 
 ---
 
