@@ -18,7 +18,7 @@ function test(label, actual, expected) {
 
 console.log('\n=== validateMobileNumber (boolean) ===\n');
 
-test('India  +91 valid', validateMobileNumber('+919876543210'), true);
+test('India  +91 valid', validateMobileNumberDetailed('+919876543210'), true);
 test('USA    +1  valid', validateMobileNumber('+12125551234'), true);
 test('UK     +44 valid', validateMobileNumber('+447911123456'), true);
 test('Germany +49 valid', validateMobileNumber('+4915117778899'), true);
