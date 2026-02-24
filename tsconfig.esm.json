@@ -7,7 +7,7 @@
         ],
         "declaration": true,
         "removeComments": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "outDir": "./dist/esm",
         "rootDir": "./src",
         "strict": true,

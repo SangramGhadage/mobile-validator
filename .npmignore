@@ -5,3 +5,4 @@ tsconfig.esm.json
 *.log
 node_modules/
 **/*.map
+test-manual.js
