@@ -127,4 +127,4 @@ TypeScript union type of all 200+ supported ISO 3166-1 alpha-2 country codes.
 
 ## License
 
-ISC © Sangram Ghadage
+MIT © 2026 Sangram Ghadage
