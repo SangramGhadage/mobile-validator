@@ -1,6 +1,6 @@
 {
   "name": "mobile-sg-validator",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Type-safe international mobile number validation for 200+ countries",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
