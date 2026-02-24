@@ -1,7 +1,57 @@
-import { parsePhoneNumberFromString } from 'libphonenumber-js';
-import type { CountryCode as LibCountryCode } from 'libphonenumber-js';
 import { countryPhonePatterns } from './country';
 import type { CountryCode, ValidationResult } from './types';
+
+/**
+ * Parsed phone number result returned by `parsePhoneNumber`.
+ * @internal
+ */
+interface ParsedPhoneNumber {
+    /** ISO 3166-1 alpha-2 country code (e.g. `"IN"`) */
+    country: CountryCode;
+    /** Numeric calling code without '+' (e.g. `"91"`) */
+    callingCode: string;
+    /** Local subscriber digits only, no country code (e.g. `"8024571878"`) */
+    nationalNumber: string;
+    /** Full E.164 number as provided (e.g. `"+918024571878"`) */
+    number: string;
+}
+
+/**
+ * Parses an E.164 phone number string using the built-in country patterns.
+ * Iterates over `countryPhonePatterns` to find a matching country and extracts
+ * the calling code + national number — no external library required.
+ *
+ * @param phoneNumber - Phone number in E.164 format (e.g. `+919876543210`)
+ * @returns A {@link ParsedPhoneNumber} if a country match is found, otherwise `null`
+ *
+ * @example
+ * parsePhoneNumber('+919876543210');
+ * // { country: 'IN', callingCode: '91', nationalNumber: '9876543210', number: '+919876543210' }
+ *
+ * parsePhoneNumber('+1234'); // null  (no pattern matches)
+ */
+const parsePhoneNumber = (phoneNumber: string): ParsedPhoneNumber | null => {
+    for (const [isoCode, entry] of Object.entries(countryPhonePatterns) as [CountryCode, typeof countryPhonePatterns[CountryCode]][]) {
+        if (entry.pattern.test(phoneNumber)) {
+            // Derive the numeric calling code from the entry's `code` field (e.g. "+91" → "91")
+            const callingCode = entry.code.replace(/[^\d]/g, '');
+
+            // Strip the leading '+' and calling code to get the national number
+            const digits = phoneNumber.replace(/^\+/, '');
+            const nationalNumber = digits.startsWith(callingCode)
+                ? digits.slice(callingCode.length)
+                : digits;
+
+            return {
+                country: isoCode,
+                callingCode,
+                nationalNumber,
+                number: phoneNumber,
+            };
+        }
+    }
+    return null;
+};
 
 /**
  * Validates a mobile phone number (simple boolean result).
@@ -18,26 +68,8 @@ export const validateMobileNumber = (phoneNumber: string): boolean => {
         return false;
     }
 
-    const phoneNumberObj = parsePhoneNumberFromString(phoneNumber);
-
-    if (!phoneNumberObj || !phoneNumberObj.isValid()) {
-        return false;
-    }
-
-    const formattedNumber = phoneNumberObj.number;
-    const countryCode = phoneNumberObj.country as CountryCode | undefined;
-
-    if (!countryCode) {
-        return false;
-    }
-
-    const patternObj = countryPhonePatterns[countryCode];
-
-    if (patternObj && !patternObj.pattern.test(formattedNumber)) {
-        return false;
-    }
-
-    return true;
+    const parsed = parsePhoneNumber(phoneNumber);
+    return parsed !== null;
 };
 
 /**
@@ -66,61 +98,23 @@ export const validateMobileNumberDetailed = (phoneNumber: string): ValidationRes
         };
     }
 
-    const phoneNumberObj = parsePhoneNumberFromString(phoneNumber);
+    const parsed = parsePhoneNumber(phoneNumber);
 
-    if (!phoneNumberObj) {
+    if (!parsed) {
         return {
             isValid: false,
-            error: 'Unable to parse phone number',
+            error: 'Unable to parse phone number or no matching country pattern found',
         };
     }
 
-    if (!phoneNumberObj.isValid()) {
-        return {
-            isValid: false,
-            error: 'Phone number is not valid',
-        };
-    }
-
-    const formattedNumber = phoneNumberObj.number; // E.164 e.g. "+918024571878"
-    const rawCountry = phoneNumberObj.country as LibCountryCode | undefined;
-    const countryCode = rawCountry as CountryCode | undefined;
-
-    if (!countryCode) {
-        return {
-            isValid: false,
-            error: 'Could not determine country from phone number',
-        };
-    }
-
-    const patternObj = countryPhonePatterns[countryCode];
-
-    if (patternObj && !patternObj.pattern.test(formattedNumber)) {
-        return {
-            isValid: false,
-            error: `Phone number does not match the expected pattern for country: ${countryCode}`,
-        };
-    }
-
-    // Extract numeric country_code from the dialing code field (strip "+", parentheses etc.)
-    const rawDialCode = patternObj?.code ?? phoneNumberObj.countryCallingCode;
-    const country_code = rawDialCode.replace(/[^\d]/g, '').replace(/^(\d+).*$/, '$1');
-
-    // Extract local mobile_number: strip the leading "+" and country calling code
-    const callingCode = phoneNumberObj.countryCallingCode; // e.g. "91"
-    const e164 = formattedNumber.replace(/^\+/, '');       // e.g. "918024571878"
-    const mobile_number = e164.startsWith(callingCode)
-        ? e164.slice(callingCode.length)                      // e.g. "8024571878"
-        : e164;
-
-    const country_name = patternObj?.country_name;
+    const patternObj = countryPhonePatterns[parsed.country];
 
     return {
         isValid: true,
-        country: countryCode,
-        country_code,
-        country_name,
-        mobile_number,
-        formattedNumber,
+        country: parsed.country,
+        country_code: parsed.callingCode,
+        country_name: patternObj.country_name,
+        mobile_number: parsed.nationalNumber,
+        formattedNumber: parsed.number,
     };
 };

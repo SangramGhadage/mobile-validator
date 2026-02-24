@@ -1,7 +1,7 @@
 // Manual test — runs against the compiled dist/ output
 // Usage: node test-manual.js
 
-const { validateMobileNumber, validateMobileNumberDetailed } = require('./dist/index');
+const { validateMobileNumber, validateMobileNumberDetailed } = require('./dist/cjs/index.js');
 
 const GREEN = '\x1b[32m✅';
 const RED = '\x1b[31m❌';

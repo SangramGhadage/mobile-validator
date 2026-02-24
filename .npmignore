@@ -1,6 +1,7 @@
 src/
 tsconfig.json
+tsconfig.esm.json
 .gitignore
 *.log
 node_modules/
-*.map
+**/*.map
