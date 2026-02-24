@@ -5,7 +5,6 @@
 [![npm version](https://img.shields.io/npm/v/mobile-sg-validator)](https://www.npmjs.com/package/mobile-sg-validator)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)](https://www.typescriptlang.org/)
 
-Powered by [`libphonenumber-js`](https://github.com/catamphetamine/libphonenumber-js) with an additional per-country regex layer for extra precision.
 
 ---
 
